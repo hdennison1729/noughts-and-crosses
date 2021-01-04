@@ -1,3 +1,7 @@
+h3 {
+  text-align: center;
+}
+
 .col {
   padding: 0px;
   background: white;
@@ -44,4 +48,69 @@
 #container {
   width: 600px;
   height: 500px;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  transition: background-color 1s;
+}
+#root {
+  width: 80%;
+  margin: 0 10%;
+}
+
+.quoteBox {
+  height: 300px;
+  border-radius: 10px;
+  text-align: right;
+  background-color: #ccc;
+}
+
+#quote {
+  padding-top: 10px;
+  padding-left: 25px;
+  text-align: left;
+}
+
+.fadeIn {
+  height: 300px;
+  display: block;
+  animation: slidein 1s ease-out forwards;
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+#author {
+  text-align: end;
+  font-style: italic;
+  margin-right: 20px;
+}
+
+#newQuote {
+  margin-right: 20px;
+  font-weight: 700;
+  font-family: "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
+}
+.box {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bottom-right {
+  padding-bottom: 10px;
+  right: 0;
+  bottom: 0;
+  position: fixed;
 }

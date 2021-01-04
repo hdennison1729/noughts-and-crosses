@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Row from "./components/Row";
+import QuotesAndAuthor from "./components/QuotesAndAuthor";
+import quotes from "./components/QuotesDatabase";
 import "./App.css";
 
+// ----- Noughts and Crosses Varibles and Functions -----
 var symbolsMap = {
   2: ["marking", "32"],
   0: ["marking marking-x", 9587],
@@ -30,6 +33,8 @@ class App extends React.Component {
       turn: 0,
       active: true,
       mode: "CPU",
+      quote: quotes[0].quote,
+      author: quotes[0].author,
     };
     this.handleNewMove = this.handleNewMove.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -37,7 +42,7 @@ class App extends React.Component {
     this.processBoard = this.processBoard.bind(this);
     this.makeCPUMove = this.makeCPUMove.bind(this);
   }
-  //I did not write the processBoard function, I stole it from the internet
+  // I did not write the processBoard function, I stole it from the internet
   processBoard() {
     var won = false;
     patterns.forEach((pattern) => {
@@ -143,6 +148,24 @@ class App extends React.Component {
       this.handleReset(null);
     }
   }
+  // ----- End of Noughts and Crosses Variables and Functions -----
+  // ----- Quote Generator Variables and Functions -----
+  randomQuote() {
+    const randomNum = Math.floor(Math.random() * quotes.length);
+    return quotes[randomNum];
+  }
+  shuffleQuotes(a) {
+    return a.sort(() => Math.random() - 0.5);
+  }
+  handleClick = () => {
+    const generateRandomQuote = this.randomQuote();
+    this.setState({
+      quote: generateRandomQuote.quote,
+      author: generateRandomQuote.author,
+    });
+    this.shuffleQuotes(quotes);
+  };
+  // ----- End of Quote Generator Variables and Functions -----
   render() {
     const rows = [];
     for (var i = 0; i < 3; i++)
@@ -178,9 +201,12 @@ class App extends React.Component {
           <p class="alert alert-success" role="alert" id="message1"></p>
           <p class="alert alert-info" role="alert" id="message2"></p>
         </div>
+        <h3>Profound Quote Generator</h3>
+        <div className="box">
+          <QuotesAndAuthor handleClick={this.handleClick} {...this.state} />
+        </div>
       </div>
     );
   }
 }
-
 export default App;
